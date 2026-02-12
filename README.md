@@ -4,9 +4,9 @@
 <!-- These badges are auto-updated by the CI pipeline on every push.     -->
 <!-- Replace YOUR_USERNAME/YOUR_REPO with your actual GitHub path.       -->
 
-![Build Status](https://github.com/UHSETeaching/Maven-Build-System-Demo/actions/workflows/ci.yml/badge.svg)
-![Coverage](https://github.com/UHSETeaching/Maven-Build-System-Demo/raw/gh-pages/.badges/jacoco.svg)
-![Branches](https://github.com/UHSETeaching/Maven-Build-System-Demo/raw/gh-pages/.badges/branches.svg)
+![Build Status](https://github.com/TacoJGriz/Maven-Build-System-Demo/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://github.com/TacoJGriz/Maven-Build-System-Demo/raw/gh-pages/.badges/jacoco.svg)
+![Branches](https://github.com/TacoJGriz/Maven-Build-System-Demo/raw/gh-pages/.badges/branches.svg)
 
 A simple Java project that demonstrates core Maven (build system) concepts and CI/CD with GitHub Actions.
 
@@ -36,7 +36,9 @@ Maven enforces **convention over configuration** — if you follow this director
 ## Maven Concepts Demonstrated
 
 ### 1. Project Coordinates (GAV)
+
 Every Maven artifact is identified by **GroupId:ArtifactId:Version**:
+
 ```xml
 <groupId>com.example</groupId>
 <artifactId>word-frequency-analyzer</artifactId>
@@ -44,7 +46,9 @@ Every Maven artifact is identified by **GroupId:ArtifactId:Version**:
 ```
 
 ### 2. Properties
+
 Centralized variables — change a version in one place:
+
 ```xml
 <properties>
     <gson.version>2.11.0</gson.version>
@@ -53,11 +57,14 @@ Centralized variables — change a version in one place:
 ```
 
 ### 3. Dependencies & Scopes
+
 Maven downloads jars and their transitive dependencies automatically:
+
 - **compile scope** (default): Gson — available everywhere, included in the jar
 - **test scope**: JUnit — only available during testing, never shipped
 
 ### 4. Build Lifecycle & Phases
+
 Maven's default lifecycle runs phases **in order**. Running a later phase automatically runs all earlier ones:
 
 ```
@@ -65,19 +72,24 @@ validate → compile → test → package → verify → install → deploy
 ```
 
 ### 5. Plugins
+
 Plugins do the actual work at each phase:
+
 - **maven-compiler-plugin** — compiles `.java` → `.class`
 - **maven-surefire-plugin** — runs unit tests
 - **maven-jar-plugin** — packages classes into a `.jar` with a manifest
 - **maven-shade-plugin** — creates a fat jar (via profile)
 
 ### 6. Profiles
+
 Conditional build configurations activated on demand:
+
 ```bash
 mvn package -P fatjar    # Activates the "fatjar" profile
 ```
 
 ### 7. Resource Filtering
+
 Files in `src/main/resources` are bundled into the jar. With `<filtering>true</filtering>`, Maven replaces `${...}` placeholders in resource files.
 
 ## Continuous Integration (CI)
@@ -125,6 +137,7 @@ After pushing this project to GitHub:
 ### JaCoCo Coverage Plugin (pom.xml)
 
 JaCoCo hooks into the Maven lifecycle in two phases:
+
 ```xml
 <!-- 1. Before tests: instruments bytecode to track which lines are executed -->
 <goal>prepare-agent</goal>
@@ -134,6 +147,7 @@ JaCoCo hooks into the Maven lifecycle in two phases:
 ```
 
 After running `mvn verify`, find the coverage report at:
+
 ```
 target/site/jacoco/index.html   ← Open in browser for detailed coverage view
 ```
