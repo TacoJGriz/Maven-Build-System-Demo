@@ -22,6 +22,7 @@ on:
     branches: [ main, master ]      # Run on every push to main
   pull_request:
     branches: [ main, master ]      # Run on PRs targeting main
+  workflow_dispatch:
 
 # ── PERMISSIONS ─────────────────────────────────────────────────────────────
 # The workflow needs write access to publish test results and badges.
